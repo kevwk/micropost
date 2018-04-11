@@ -39,14 +39,14 @@ class UserTest < ActiveSupport::TestCase
       first.last@foo.ja user+wk@com.cn]
     valid_addresses.each { |valid_addr|
       @user.email = valid_addr
-      assert @user.valid? "#{valid_addr} should be valid"
+      assert @user.valid?, "#{valid_addr} should be valid"
     }
 
     invalid_addresses = %w[user@example U_SE-R.org
       first.last@foo.ja@com.cn user+wk@bar+com.cn]
     invalid_addresses.each { |invalid_addr|
       @user.email = invalid_addr
-      assert_not @user.valid? "#{invalid_addr} should be invalid"
+      assert_not @user.valid?, "#{invalid_addr} should be invalid"
     }
   end
 
