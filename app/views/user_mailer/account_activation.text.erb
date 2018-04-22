@@ -1,0 +1,4 @@
+Hi <%= @user.name %>
+欢迎注册Micropost。
+请点击下面的地址验证你的帐号：
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

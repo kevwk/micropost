@@ -1,0 +1,5 @@
+<h1>Micropost</h1>
+<p>Hi <%= @user.name %>,</p>
+<p>欢迎注册Micropost。</p>
+<p>请点击下面的地址验证你的帐号：</p>
+<%= link_to "点击验证", edit_account_activation_url(@user.activation_token, email: @user.email) %>

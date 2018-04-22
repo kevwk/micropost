@@ -5,9 +5,16 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
-      log_in(@user)
-      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      redirect_back_or(@user)
+      if @user.activated?
+        log_in(@user)
+        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+        redirect_back_or(@user)
+      else
+        message = "账户未验证！"
+        message += "请检查您邮箱中的验证邮件！"
+        flash.now[:warning] = message
+        redirect_to(root_url)
+      end
     else
       flash.now[:danger] = "无效的用户名或密码！"
       render 'new'
