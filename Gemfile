@@ -58,7 +58,7 @@ group :development do
 end
 
 group :production do
-  #gem 'fog'
+  gem 'fog'
   gem 'pg'
 end
 
